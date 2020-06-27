@@ -1,0 +1,41 @@
+
+{% extends 'miapp/layout.html' %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block content %}
+    <h1 class="title">La D es muda, gilipollas...</h1>
+
+    <h2>Condicionales en Django</h2>
+    {% if nombre and nombre != "Sergey Petrov" %}
+        <p>{{nombre}}</p>
+    {% else %}
+        <strong>El nombre no existe o debe ser distinto</strong>
+    {% endif %}
+
+    <h2>Lenguajes de programación y/o Frameworks</h2>
+
+    <table style="width:100%">
+    <tr>    <th>Language</th><th>First</th><th>Last</th><th>Counter</th><th>Counter0</th>
+            <th>Revcounter</th><th>Revcounter0</th>   </tr>
+    {% for lenguaje in lenguajes %}
+
+        <tr>
+            <th>{{lenguaje}}</th>
+            <th>{{forloop.first}}</th>
+            <th>{{forloop.last}}</th>
+            <th>{{forloop.counter}}</th>
+            <th>{{forloop.counter0}}</th>
+            <th>{{forloop.revcounter}}</th>
+            <th>{{forloop.revcounter0}}</th>
+        </tr>
+    {% empty %}
+        <strong>No hay lenguajes que mostrar</strong>
+    {% endfor %}
+    </table>
+
+    {% include 'miapp/filtros.html'%}
+
+{% endblock %}

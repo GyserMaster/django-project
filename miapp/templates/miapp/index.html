@@ -1,0 +1,21 @@
+{% extends 'miapp/layout.html' %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+
+<!--Comentario en HTML-->
+{% comment 'Comentario django, no es visible en el navegador' %}
+    <h1>Este no se va a procesar</h1>
+{% endcomment %}
+
+
+{% block content %}
+
+    {{ block.super }}
+    <h3 class="title">Inicio</h3>
+    
+    
+
+{% endblock %}

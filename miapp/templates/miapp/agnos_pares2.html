@@ -1,0 +1,12 @@
+<br/>
+<hr>
+<br/>
+<p>Este parrafo es un <strong>include</strong> de agnos_pares2.html</p>
+<p>{{saludo}}</p>
+<ul>
+    {% for year in year_range %}
+        {% if year|divisibleby:2 != 0 %}
+            <li>{{ year }}</li>
+        {% endif %}
+    {% endfor %}    
+</ul>

@@ -1,0 +1,157 @@
+
+{% extends 'miapp/layout.html' %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block content %}
+<h1 class="title">Listado de articulos</h1>
+<strong>{{articulos}}</strong>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="message">
+            {{message}}
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+    {% for articulo in articulos %}
+        <article class="article-item">
+
+            <h2>{{articulo.id}} - {{articulo.title}}</h2>
+
+            {% if articulo.image %}
+                <div class="image">
+                    <img src="{{articulo.image.url}}"/>
+                </div>
+            {% endif %}
+
+            <div class="data">
+                <p>{{articulo.content}}</p>
+                <span class="date">{{articulo.created}}</span>
+                <a href="{% url 'borrar_articulo' articulo.id %}" class="btn btn-delete">Eliminar</a>
+                <br><br/>
+            </div>           
+
+            <div class="clearfix"></div>
+        </article>
+    {% endfor %}
+
+
+<br><br><hr><br><br>
+<h2>Filtro normal</h2>
+<ul>
+    {% for articulo in filter1 %}
+        <li>
+            <h4>{{articulo.id}} - {{articulo.title}}</h4>
+            <p>{{articulo.content}}</p>
+            <a href="{% url 'borrar_articulo' articulo.id %}">Eliminar</a>
+            <br><br/>
+        </li>
+        
+    {% endfor %}
+</ul>
+
+<br><br><hr><br><br>
+<h2>filter(title__contains="eget")</h2>
+<ul>
+    {% for articulo in filter2 %}
+        <li>
+            <h4>{{articulo.id}} - {{articulo.title}}</h4>
+            <p>{{articulo.content}}</p>
+            <a href="{% url 'borrar_articulo' articulo.id %}">Eliminar</a>
+            <br><br/>
+        </li>
+        
+    {% endfor %}
+</ul>
+
+<br><br><hr><br><br>
+<h2>filter(title__icontains="CuLo")</h2>
+<ul>
+    {% for articulo in filter3 %}
+        <li>
+            <h4>{{articulo.id}} - {{articulo.title}}</h4>
+            <p>{{articulo.content}}</p>
+            <a href="{% url 'borrar_articulo' articulo.id %}">Eliminar</a>
+            <br><br/>
+        </li>
+        
+    {% endfor %}
+</ul>
+
+<br><br><hr><br><br>
+<h2>filter(title__iexact="aRTICULO UNO")</h2>
+<ul>
+    {% for articulo in filter4 %}
+        <li>
+            <h4>{{articulo.id}} - {{articulo.title}}</h4>
+            <p>{{articulo.content}}</p>
+            <a href="{% url 'borrar_articulo' articulo.id %}">Eliminar</a>
+            <br><br/>
+        </li>
+        
+    {% endfor %}
+</ul>
+
+<br><br><hr><br><br>
+<h2>filter(id__lte=4, title__icontains="goku")</h2>
+<ul>
+    {% for articulo in filter5 %}
+        <li>
+            <h4>{{articulo.id}} - {{articulo.title}}</h4>
+            <p>{{articulo.content}}</p>
+            <a href="{% url 'borrar_articulo' articulo.id %}">Eliminar</a>
+            <br><br/>
+        </li>
+        
+    {% endfor %}
+</ul>
+
+<br><br><hr><br><br>
+<h2>filter(id__gte=3).exclude(title__icontains="articulo").exclude(title__icontains="goku")</h2>
+<ul>
+    {% for articulo in filter6 %}
+        <li>
+            <h4>{{articulo.id}} - {{articulo.title}}</h4>
+            <p>{{articulo.content}}</p>
+            <a href="{% url 'borrar_articulo' articulo.id %}">Eliminar</a>
+            <br><br/>
+        </li>
+        
+    {% endfor %}
+</ul>
+
+<br><br><hr><br><br>
+<h2>filter(id__in=sql_query.my_custom_sql())</h2>
+<ul>
+    {% for articulo in filter7 %}
+        <li>
+            <h4>{{articulo.id}} - {{articulo.title}}</h4>
+            <p>{{articulo.content}}</p>
+            <a href="{% url 'borrar_articulo' articulo.id %}">Eliminar</a>
+            
+            <br><br/>
+        </li>
+        
+    {% endfor %}
+</ul>
+
+<br><br><hr><br><br>
+<h2>.filter( Q(title__contains="uno") | Q(title__contains="dos") )</h2>
+<ul>
+    {% for articulo in filter8 %}
+        <li>
+            <h4>{{articulo.id}} - {{articulo.title}}</h4>
+            <p>{{articulo.content}}</p>
+            <a href="{% url 'borrar_articulo' articulo.id %}">Eliminar</a>
+            <br><br/>
+        </li>
+        
+    {% endfor %}
+</ul>
+
+{% endblock %}

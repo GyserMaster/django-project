@@ -1,0 +1,16 @@
+{% extends 'mainapp/layout.html' %}
+
+{% block title %}
+    {{page.title}}
+{% endblock %}
+
+
+{% block content %}
+    <h3 class="title">{{page.title}}</h3>
+    <p class="content">{{page.content|safe}}</p>
+    <span class="date">{{page.created}}</span>
+
+    <br><br><hr>
+    {{pages}}
+    
+{% endblock %}

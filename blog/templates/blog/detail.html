@@ -1,0 +1,34 @@
+{% extends 'mainapp/layout.html' %}
+
+{% block title %}
+    {{article.title}}
+{% endblock %}
+
+
+{% block content %}
+    <h2>Articulo al detalle | Detail.html</h2>
+    <h3 class="title">{{article.title}}</h3>
+    
+    {% if articulo.image %}
+        <div class="image">
+            <img src="{{articulo.image.url}}"/>
+        </div>
+    {% endif %}
+
+    <p class="content">{{article.content|safe}}</p>
+
+    <span class="date">{{article.created}}
+    {{article.user.username}} [ {{article.user.first_name}} {{article.user.last_name}} {{article.user.email}} ]
+    </span>
+
+    <a href="{% url 'borrar_articulo_blog' article.id %}" class="btn btn-delete">Eliminar</a>
+    <br><br><hr>
+
+    {% for cat in article.categories.all %}
+        <a href="{% url 'category' cat.id %}">{{cat}}</a>
+        {% if forloop.counter < articulo.categories.all|length %}
+            {{" - "}}
+        {% endif %}
+    {% endfor %}
+    
+{% endblock %}

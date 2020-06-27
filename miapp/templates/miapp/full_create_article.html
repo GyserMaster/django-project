@@ -1,0 +1,24 @@
+{% extends 'miapp/layout.html' %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block content %}
+    <h2>{{title}}</h2>
+    <br><br><hr><br>
+    <h3>METHOD POST</h3>
+
+    {% if form.errors %}
+        <strong class="rojo">Hay errores en el formulario</strong>
+    {% endif %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+
+        <input type="submit" value="Guardar"/>
+    </form>
+
+{% endblock %}

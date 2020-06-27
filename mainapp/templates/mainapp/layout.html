@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %} {% endblock %} | Sergey Petrov</title>
+    
+    <link rel="shortcut icon" type="image/png" href="{% static 'ball.png' %}"/>
+    <link rel='stylesheet' type="text/css" href="{% static 'css/styles.css' %}" />
+</head>
+<body>
+
+    <header>
+        <div id="logotipo">
+            <!--Logo django-->
+            <img src="{% static 'images/django.png' %}"/>
+            <h1> Web en Django </h1>
+        </div>
+    </header>
+
+    
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'main_index'%}">Inicio</a>
+            </li>
+
+            {% if user.email %}
+                <li>
+                    <a href="{% url 'list' %}">Articulos</a>
+                    <ul>
+                        {% for cat in categorys %}
+                            <li>
+                                <a href="{% url 'category' cat.0 %}">{{cat.1}}</a>
+                            </li>
+                        {% endfor %}                  
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="{% url 'main_about'%}">About Me</a>
+                </li>
+                {% for page in pages %}
+                    <li>
+                        <a href="{% url 'page' page.2 %}">{{page.1}}</a>                
+                    </li>
+                {% endfor %}
+
+                <li>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+
+            {% else %}
+                <li>
+                    <a href="{% url 'register' %}">Registro</a>
+                </li>
+                <li>
+                    <a href="{% url 'login' %}">Login</a>
+                </li>
+            
+            {% endif %}
+            
+
+            
+         
+        </ul>
+    </nav>
+
+    <div class="barra">
+        <span class="esquina-izq"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-der"></span>
+    </div>
+    
+
+    <div id="content">
+        <div class="box">  {{ids}} 8==> mainapp/layout.html
+            
+            {% block content %}
+                <h2 class="title">Titulo de contenido</h2>
+                <strong>Contenido del bloque original layout</strong>
+            {% endblock %}
+        </div>
+
+    </div>
+
+    <hr/>
+    <footer>
+        Master en Python &copy; GyserMaster - {% now "dD mM Y | h:m:s" %}
+    </footer>
+
+</body>
+</html>

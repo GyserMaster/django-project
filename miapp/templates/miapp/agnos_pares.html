@@ -1,0 +1,15 @@
+{% extends 'miapp/layout.html' %}
+
+{% block title %}
+    {{title}}
+{% endblock title %}
+
+
+
+{% block content %}
+    <h3 class="title">Muestra los años pares desde {{year}} hasta {{max_year}}</h3>
+    {{agnos}}
+    
+    {% include 'miapp/agnos_pares2.html' with saludo="Hola mundo desde include con with"%}
+
+{% endblock content %}

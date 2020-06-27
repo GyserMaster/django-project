@@ -1,0 +1,34 @@
+{% extends 'mainapp/layout.html' %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+
+{% block content %}
+    <h3 class="title">Inicio</h3>
+    <p>Esto son <strong>CONTEXT PROCESSORS</strong> las cuales se cargan en el servidor DJango como si fueran
+    <strong>VARIABLES GLOBALES</strong> ==> </p>
+    {{pages}}
+    <p>Las configuraremos dentro de <strong>layout.html</strong> como parte del menu navegable</p>
+
+    {% if messages %}
+        {% for msg in messages %}
+            <div class="alert alert-success">
+                {{msg}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+    {% if user.email %}
+        <h2>Welcome my friend  {{request.user.first_name}} {{request.user.last_name}} [ {{request.user.username}} ]</h2>
+        <p>
+            {{user.email}}
+        </p>
+
+    {% else %}
+        <h2>Identificate</h2>
+    {% endif %}
+    
+{% endblock %}

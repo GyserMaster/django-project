@@ -1,0 +1,35 @@
+{% for articulo in articulos %}
+    <article class="article-item">
+
+        <a href="{% url 'detail_articulo_blog' articulo.id %}">
+            <h2>{{articulo.id}} - {{articulo.title}}</h2>
+        </a>
+
+        {% if articulo.image %}
+            <div class="image">
+                <img src="{{articulo.image.url}}"/>
+            </div>
+        {% endif %}
+
+        <div class="data">
+            <p>{{articulo.content|safe}}</p>
+            <span class="date">
+                {{articulo.user.username}} [ {{articulo.user.first_name}} {{articulo.user.last_name}} {{articulo.user.email}} ]
+                
+                {{articulo.created}}
+
+                {% for cat in articulo.categories.all %}
+                    <a href="{% url 'category' cat.id %}">{{cat}}</a>
+                    {% if forloop.counter < articulo.categories.all|length %}
+                        {{" - "}}
+                    {% endif %}
+                {% endfor %}
+
+            </span>
+            <a href="{% url 'borrar_articulo_blog' articulo.id %}" class="btn btn-delete">Eliminar</a>
+            <br><br/>
+        </div>           
+
+        <div class="clearfix"></div>
+    </article>
+{% endfor %}

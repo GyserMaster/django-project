@@ -1,0 +1,22 @@
+<br/><br/><hr><br/>
+<h3>Include desde el archivo filtros.html | Django Template Filters</h3>
+
+<p>cut => {{"Creado por Sergey Petrov"|cut:" "}}</p>
+<p>default => {{vacio|default:"El texto viene vacio"}}</p>
+
+<p>first => {{lenguajes|first}} </p>
+<p>last => {{lenguajes|last}}  </p>
+<p>join => {{lenguajes|join:', '}}</p>
+<p>length => {{lenguajes|length}}</p>
+<p>random => {{lenguajes|random}}</p>
+
+<p>upper => {{nombre|upper}} </p>
+<p>length => {{nombre|length}} </p>
+<p>lower => {{nombre|lower}}</p>
+<p>striptags|wordcount => {{"<h1>Texto de prueba</h1> con <br><hr>etiquetas <strong>html</strong> incorporadas"|striptags|wordcount}}</p>
+
+
+<br/><br/><hr><br/>
+<h3>Filtros personalizados</h3>
+{% load filters %}
+{{"Sergey Petrov"|saludo|safe}}
