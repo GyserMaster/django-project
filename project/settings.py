@@ -31,6 +31,12 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'dj_puro.apps.DjPuroConfig',
+    "api.apps.ApiConfig",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "rest_framework_swagger",
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,6 +59,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+#CSRF_COOKIE_SECURE = True
+#SESSION_COOKIE_HTTPONLY = True
+#SESSION_COOKIE_SECURE = True
+#SECURE_SSL_REDIRECT = True
 
 ROOT_URLCONF = 'project.urls'
 
@@ -154,4 +165,15 @@ CKEDITOR_CONFIGS = {
             ['RemoveFormat', 'Source']
         ]
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES':(
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_SCHEMA_CLASS':('rest_framework.schemas.coreapi.AutoSchema'),
 }

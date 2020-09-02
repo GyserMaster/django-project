@@ -54,7 +54,7 @@ def register_page(request):
 def login_page(request):
 
     if request.user.is_authenticated:
-        return redirect(main_index)
+        return redirect("main_index")
 
     if request.method == "POST":
         username = request.POST.get('username')

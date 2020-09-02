@@ -26,6 +26,12 @@ import pages.views
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # API RestFrameWork
+    path('api/', include('api.urls')),
+
+    # API_DJ_PURO
+    path('djpuro/', include('dj_puro.urls')),
+
     # BLOG
     path('', include("blog.urls")),
 
