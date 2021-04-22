@@ -1,0 +1,6 @@
+--- DJANGO PROJECT ---
+Es un proyecto con muchos apuntes, herramientas, aplicaciones utiles, plantillas.
+
+--- apps
+api > utiliza django-rest-framework , en settings.py tiene conexión por Token
+dj_puro > utiliza api basica de django
